@@ -551,6 +551,64 @@ INSERT INTO Earnings (Earning_ID, Payment_ID, Commission_Amount, Driver_Earnings
 (29, 29, 4.72, 18.88, '2023-01-29 13:35:00'),
 (30, 30, 6.05, 24.20, '2023-01-30 14:50:00');
 
+-- ***
+-- Add 4 new drivers without licenses/vehicles/rides
+INSERT INTO Drivers (Driver_ID, First_Name, Last_Name, Rating) VALUES
+(31, 'John', 'Doe', 4.50),
+(32, 'Jane', 'Doe', 4.60),
+(33, 'Robert', 'Smith', 4.70),  -- Duplicate last name
+(34, 'Mary', 'Johnson', 4.80);  -- Duplicate last name
+
+-- Add 4 new passengers without reviews
+INSERT INTO Passengers (Passenger_ID, First_Name, Last_Name, Phone_Number) VALUES
+(31, 'Paul', 'Taylor', '+1-555-0131'),
+(32, 'Emma', 'Brown', '+1-555-0132'),
+(33, 'Liam', 'Davis', '+1-555-0133'),
+(34, 'Olivia', 'Wilson', '+1-555-0134');
+
+-- Add 3 new drivers with vehicles but no rides
+INSERT INTO Drivers (Driver_ID, First_Name, Last_Name, Rating) VALUES
+(35, 'Michael', 'Smith', 4.55),  -- Duplicate last name
+(36, 'Sarah', 'Johnson', 4.65),  -- Duplicate last name
+(37, 'David', 'Williams', 4.75);
+
+INSERT INTO Vehicles (Vehicle_ID, License_Plate, Brand, Model, Color, Type, Driver_ID) VALUES
+(31, 'NOV1', 'Toyota', 'Corolla', 'White', 'Sedan', 35),
+(32, 'NOV2', 'Honda', 'Civic', 'Black', 'Sedan', 36),
+(33, 'NOV3', 'Ford', 'Focus', 'Blue', 'Sedan', 37);
+
+-- Add canceled rides with incidents
+INSERT INTO Rides (Ride_ID, Pickup_Location, Dropoff_Location, Start_Time, End_Time, Status, Driver_ID) VALUES
+(31, '100 Cancel Rd', '200 Cancel Ave', '2023-02-01 09:00:00', '2023-02-01 09:30:00', 'Canceled', 1),
+(32, '300 Cancel Ln', '400 Cancel Blvd', '2023-02-02 10:00:00', '2023-02-02 10:30:00', 'Canceled', 2),
+(33, '500 Cancel St', '600 Cancel Pkwy', '2023-02-03 11:00:00', '2023-02-03 11:30:00', 'Canceled', 3),
+(34, '700 Cancel Dr', '800 Cancel Way', '2023-02-04 12:00:00', '2023-02-04 12:30:00', 'Canceled', 4);
+
+INSERT INTO Incidents (Incident_ID, Incident_Type, Reported_By, Status, Ride_ID, Driver_ID, Passenger_ID) VALUES
+(31, 'Cancellation', 'System', 'Reported', 31, 1, 1),
+(32, 'No Show', 'Driver', 'Investigating', 32, 2, 2),
+(33, 'Dispute', 'Passenger', 'Resolved', 33, 3, 3),
+(34, 'Payment Issue', 'Driver', 'Reported', 34, 4, 4);
+
+-- Add overlapping rides for driver 1
+INSERT INTO Rides (Ride_ID, Pickup_Location, Dropoff_Location, Start_Time, End_Time, Status, Driver_ID) VALUES
+(35, 'Overlap Start', 'Overlap End', '2023-01-01 08:15:00', '2023-01-01 08:45:00', 'Completed', 1),
+(36, 'Overlap Start', 'Overlap End', '2023-01-01 08:20:00', '2023-01-01 08:50:00', 'Completed', 1);
+
+-- Add ride-passenger relationships
+INSERT INTO Ride_Passengers (Ride_ID, Passenger_ID) VALUES
+(31, 31), (32, 32), (33, 33), (34, 34),
+(35, 1), (36, 2);
+
+-- Add payments for overlapping rides
+INSERT INTO Payments (Payment_ID, Ride_ID, Amount, Transaction_Date, Payment_Method, Status) VALUES
+(31, 35, 28.50, '2023-02-01 09:05:00', 'Credit Card', 'Paid'),
+(32, 36, 32.75, '2023-02-02 10:05:00', 'Mobile Wallet', 'Paid');
+
+INSERT INTO Earnings (Earning_ID, Payment_ID, Commission_Amount, Driver_Earnings, Transaction_Date) VALUES
+(31, 31, 5.70, 22.80, '2023-02-01 09:05:00'),
+(32, 32, 6.55, 26.20, '2023-02-02 10:05:00');
+
 /*
 Key Business Insights:
 Driver Performance: Ratings correlate with earnings (4.95-rated driver #30 has highest earnings)
