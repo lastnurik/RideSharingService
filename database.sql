@@ -615,6 +615,21 @@ INSERT INTO Drivers (Driver_ID, First_Name, Last_Name, Rating) VALUES
 INSERT INTO Vehicles (Vehicle_ID, License_Plate, Brand, Model, Color, Type, Driver_ID) VALUES
 (36, 'LUX123', 'Mercedes', 'S-Class', 'Black', 'Luxury', 41);
 
+-- Add Smith family members
+INSERT INTO Passengers (Passenger_ID, First_Name, Last_Name, Phone_Number) VALUES
+(35, 'Sarah', 'Smith', '+1-555-0135'),
+(36, 'Tom', 'Smith', '+1-555-0136');
+
+-- Add Johnson family members
+INSERT INTO Passengers (Passenger_ID, First_Name, Last_Name, Phone_Number) VALUES
+(37, 'Emma', 'Johnson', '+1-555-0137'),
+(38, 'Lucas', 'Johnson', '+1-555-0138');
+
+-- Add duplicate last name with different first names
+INSERT INTO Passengers (Passenger_ID, First_Name, Last_Name, Phone_Number) VALUES
+(39, 'Sophia', 'Brown', '+1-555-0139'),
+(40, 'James', 'Brown', '+1-555-0140');
+
 /*
 Key Business Insights:
 Driver Performance: Ratings correlate with earnings (4.95-rated driver #30 has highest earnings)
