@@ -609,6 +609,12 @@ INSERT INTO Earnings (Earning_ID, Payment_ID, Commission_Amount, Driver_Earnings
 (31, 31, 5.70, 22.80, '2023-02-01 09:05:00'),
 (32, 32, 6.55, 26.20, '2023-02-02 10:05:00');
 
+INSERT INTO Drivers (Driver_ID, First_Name, Last_Name, Rating) VALUES
+(41, 'Luxury', 'Driver', 4.90);
+
+INSERT INTO Vehicles (Vehicle_ID, License_Plate, Brand, Model, Color, Type, Driver_ID) VALUES
+(36, 'LUX123', 'Mercedes', 'S-Class', 'Black', 'Luxury', 41);
+
 /*
 Key Business Insights:
 Driver Performance: Ratings correlate with earnings (4.95-rated driver #30 has highest earnings)
